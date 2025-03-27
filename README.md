@@ -8,7 +8,7 @@ This project implements an AI model for segmenting polyps in colonoscopy images.
 colonoscopy/
 ├── mdoels/
 │   ├── polyp_detector.py
-│   ├── train.py
+│   ├── resnet_unet_train.py
 │   ├── checkpoints/
 │   └── visualizations/
 ├── data/
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 To train the model:
 ```bash
 cd models
-python train.py
+python resnet_unet_train.py
 ```
 
 ## Evaluation Metrics
