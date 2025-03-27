@@ -5,13 +5,13 @@ This project implements an AI model for segmenting polyps in colonoscopy images.
 
 ## Project Structure
 ```
-kolonoskopi/
-├── modeller/
+colonoscopy/
+├── mdoels/
 │   ├── polyp_detector.py
 │   ├── train.py
 │   ├── checkpoints/
 │   └── visualizations/
-├── veri/
+├── data/
 │   ├── images/
 │   └── masks/
 └── README.md
