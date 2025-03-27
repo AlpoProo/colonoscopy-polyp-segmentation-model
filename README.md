@@ -5,13 +5,13 @@ This project implements an AI model for segmenting polyps in colonoscopy images.
 
 ## Project Structure
 ```
-kolonoskopi/
-├── modeller/
+colonoscopy/
+├── models/
 │   ├── polyp_detector.py
-│   ├── train.py
+│   ├── resnet_unet_train.py
 │   ├── checkpoints/
 │   └── visualizations/
-├── veri/
+├── data/
 │   ├── PNG/
 │   │   ├── Original/
 │   │   └── Ground Truth/
@@ -47,15 +47,15 @@ pip install -r requirements.txt
 ```
 
 2. Prepare your dataset:
-   - Place colonoscopy images in `veri/PNG/Original/` directory
-   - Place corresponding masks in `veri/PNG/Ground Truth/` directory
+   - Place colonoscopy images in `data/PNG/Original/` directory
+   - Place corresponding masks in `data/PNG/Ground Truth/` directory
    - Ensure image and mask filenames match
 
 ## Training
 To train the model:
 ```bash
-cd modeller
-python train.py
+cd models
+python resnet_unet_train.py
 ```
 
 ## Evaluation Metrics
