@@ -5,31 +5,40 @@ This project implements an AI model for segmenting polyps in colonoscopy images.
 
 ## Project Structure
 ```
-colonoscopy/
-├── mdoels/
+kolonoskopi/
+├── modeller/
 │   ├── polyp_detector.py
-│   ├── resnet_unet_train.py
+│   ├── train.py
 │   ├── checkpoints/
 │   └── visualizations/
-├── data/
-│   ├── images/
-│   └── masks/
+├── veri/
+│   ├── PNG/
+│   │   ├── Original/
+│   │   └── Ground Truth/
 └── README.md
 ```
 
 ## Model Architecture
 The model is a deep neural network that performs polyp segmentation using:
-- ResNet50 encoder (pre-trained on ImageNet)
-- ASPP (Atrous Spatial Pyramid Pooling) for multi-scale feature extraction
-- SE (Squeeze-and-Excitation) blocks for feature importance learning
-- UNet-like decoder for segmentation
+- ResNet34 encoder (pre-trained on ImageNet)
+- SE (Squeeze-and-Excitation) blocks
+- UNet-like decoder
+- Focal Dice BCE combined loss function
+
+### Key Features
+- Strong feature extraction with ResNet34 backbone
+- Feature importance learning with SE blocks
+- Multi-scale feature extraction
+- Better learning of difficult examples with Focal loss
+- Enhanced segmentation performance with Dice loss
 
 ## Technologies Used
 - PyTorch
-- ResNet50
+- ResNet34
 - UNet-like decoder
-- ASPP
 - SE blocks
+- Albumentations (data augmentation)
+- Weights & Biases (experiment tracking)
 
 ## Installation
 1. Install required packages:
@@ -38,35 +47,39 @@ pip install -r requirements.txt
 ```
 
 2. Prepare your dataset:
-   - Place colonoscopy images in `veri/images/`
-   - Place corresponding masks in `veri/masks/`
+   - Place colonoscopy images in `veri/PNG/Original/` directory
+   - Place corresponding masks in `veri/PNG/Ground Truth/` directory
    - Ensure image and mask filenames match
 
 ## Training
 To train the model:
 ```bash
-cd models
-python resnet_unet_train.py
+cd modeller
+python train.py
 ```
 
 ## Evaluation Metrics
 The model is evaluated using:
-- Dice Score for segmentation accuracy
+- Dice Score (segmentation accuracy)
+- IoU (Intersection over Union)
+- Focal Dice BCE Loss
 
 ## Visualizations
 During training, the following visualizations are generated:
-- Loss values over epochs
-- Dice Score over epochs
-- Model predictions with segmentation masks
+- Loss values per epoch
+- Dice Score per epoch
+- IoU Score per epoch
+- Model predictions and segmentation masks
 
 ## Model Outputs
 For each input image, the model produces:
 - Segmentation mask highlighting the polyp region
 
 ## Additional Notes
-- The model uses ImageNet pre-trained ResNet50 as the backbone
-- ASPP module captures multi-scale contextual information
+- Model uses ImageNet pre-trained ResNet34 as backbone
 - SE blocks learn feature importance
-- Mixed precision training is used for improved speed
-- Cosine annealing with warm restarts for learning rate scheduling
-- WandB integration for experiment tracking 
+- Speed improvement with mixed precision training
+- Learning rate scheduling with cosine annealing with warm restarts
+- Experiment tracking with Weights & Biases integration
+- Comprehensive data augmentation techniques
+- Automatic model checkpointing 
