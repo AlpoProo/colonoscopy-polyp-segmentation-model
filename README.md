@@ -45,7 +45,7 @@ pip install -r requirements.txt
 ## Training
 To train the model:
 ```bash
-cd modeller
+cd models
 python train.py
 ```
 
